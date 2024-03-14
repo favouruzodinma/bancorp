@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Design</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .card-container {
+      perspective: 1000px; /* Add 3D perspective to the container */
+    }
+
+    .card,
+    .card-back {
+      position: absolute;
+      width: 300px;
+      height: 150px;
+      background: linear-gradient(135deg, #4a90e2, #1e4088);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      backface-visibility: hidden; /* Prevents flickering during transition */
+      transform-style: preserve-3d; /* Enables 3D transitions */
+      transition: transform 0.5s; /* Smooth transition effect */
+    }
+
+    .card .logo,
+    .card-back .logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card .chip,
+    .card-back .chip {
+      width: 50px;
+      margin-left: auto;
+      margin-top: auto;
+      transform: translateY(-50%);
+    }
+
+    .card .number,
+    .card-back .number {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .card .info,
+    .card-back .info {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card .info .name,
+    .card-back .info .expiry {
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .card .info .expiry {
+      font-size: 14px;
+    }
+
+    .card-back {
+      display: none;
+      transform: rotateY(180deg); /* Initially rotated to hide the back */
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card-container.show-back .card {
+      transform: rotateY(180deg);
+    }
+
+    .card-container.show-back .card-back {
+      display: flex;
+      transform: rotateY(0deg); /* Adjusted to show the back */
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card-container">
+  <div class="card">
+    <div class="logo">
+      <img src="images/visa.png" alt="Visa Logo" width="60">
+      <img src="images/mastercard.png" alt="MasterCard Logo" width="60">
+    </div>
+    <!-- <div class="number">**** **** **** 1234</div> -->
+    <br>
+    <br>
+    <br>
+    <div class="info">
+      <div class="name">john doe</div>
+      <img class="chip" src="images/card_chip.png" alt="Card Chip">
+    </div>
+  </div>
+
+  <div class="card-back">
+    <div class="logo">
+      <img src="images/visa.png" alt="Visa Logo" width="60">
+      <img src="images/mastercard.png" alt="MasterCard Logo" width="60">
+    </div>
+    <div class="number">**** **** **** 1234</div>
+    <div class="info">
+      <div class="expiry">12/23</div>
+    </div>
+    <!-- <img class="chip" src="images/card_chip.png" alt="Card Chip"> -->
+  </div>
+</div>
+
+<button onclick="toggleCard()">Show Detail</button>
+
+<script>
+  function toggleCard() {
+    const cardContainer = document.querySelector('.card-container');
+    cardContainer.classList.toggle('show-back');
+  }
+</script>
+
+</body>
+</html>

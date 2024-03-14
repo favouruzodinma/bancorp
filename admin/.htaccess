@@ -1,0 +1,15 @@
+# Enable rewriting engine
+RewriteEngine On
+
+# Specify the base directory
+# RewriteBase /LandmarkTutors/
+
+# Redirect all requests to the index.php file
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php [L,QSA]
+
+# Handle 404 errors
+ErrorDocument 404 /bancorp/admin/404
